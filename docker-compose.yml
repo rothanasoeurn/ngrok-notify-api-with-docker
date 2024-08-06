@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: notify-app
+    ports:
+      - 3000:3000
+    volumes:
+      - ./app:/home/node/app:rw
+    networks:
+      - sabay_docker
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: ngrok
+    ports:
+      - 4040:4040
+    command:
+      - "start"
+      - "--all"
+      - "--config"
+      - "/etc/ngrok.yml"
+    volumes:
+      - ./ngrok-config.yml:/etc/ngrok.yml:rw
+    networks:
+      - sabay_docker
+
+networks:
+  sabay_docker:
+    external: true

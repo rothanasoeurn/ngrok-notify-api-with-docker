@@ -1,0 +1,13 @@
+authtoken: _your_auth_token_
+web_addr: 0.0.0.0:4040
+version: 2
+console_ui: true
+console_ui_color: transparent
+log_format: json
+log_level: info
+tunnels:
+  server:
+    proto: http
+    addr: notify-app:3000 #docker container name
+    inspect: true
+    # addr: 8080 #localhost
